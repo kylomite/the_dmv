@@ -11,5 +11,15 @@ class Registrant
         @license_data = {:written=>false, :license=>false, :renewed=>false}
     end
 
-    
+    def earn_permit
+        if @permit == false
+            @permit = true
+        else 
+            "Permit is already earned"
+        end
+    end
+
+    def permit?
+        @permit
+    end
 end
