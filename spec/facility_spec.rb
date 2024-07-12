@@ -52,7 +52,7 @@ RSpec.describe Facility do
     it 'will assign current date as vehicles registration date' do
 
       @facility.add_service('Vehicle Registration')
-      require'pry';binding.pry
+
       expect(@cruz.registration_date).to eq nil
 
       @facility.register_vehicle(@cruz)
@@ -73,20 +73,34 @@ RSpec.describe Facility do
       expect(@bolt.plate_type).to eq :ev
       expect(@camaro.plate_type).to eq :antique
     end
-  end
-  
-  
-  describe'#collect_fees' do
     
-    it 'will cost $100 to register a regular vehicle' do
+    it 'will collect $100 when registering a regular vehicle' do
+
+      @facility.add_service('Vehicle Registration')
+
+      @facility.register_vehicle(@cruz)
+
+      expect(@facility.collected_fees).to eq 100
 
     end
     
-    it 'will cost $25 to register an antique vehicle' do
+    it 'will collect $25 when registering an antique vehicle' do
+
+      @facility.add_service('Vehicle Registration')
+
+      @facility.register_vehicle(@camaro)
+
+      expect(@facility.collected_fees).to eq 100
 
     end
 
-    it 'will cost $200 to register any EV' do
+    it 'will collect $200 when registering an EV' do
+
+      @facility.add_service('Vehicle Registration')
+
+      @facility.register_vehicle(@bolt)
+
+      expect(@facility.collected_fees).to eq 100
 
     end
 
