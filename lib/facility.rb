@@ -5,7 +5,8 @@ class Facility
               :address,
               :phone,
               :services,
-              :registered_vehicles
+              :registered_vehicles,
+              :collected_fees
 
   def initialize(fac_info)
     @name = fac_info[:name]
@@ -25,10 +26,13 @@ class Facility
       @registered_vehicles << vehicle
       vehicle.registration_date = Date.today
       if vehicle.antique? == true
+        @collected_fees += 25
         vehicle.plate_type = :antique
       elsif vehicle.electric_vehicle? == true
+        @collected_fees += 200
         vehicle.plate_type = :ev
       else 
+        @collected_fees += 100
         vehicle.plate_type = :regular
       end
     end
