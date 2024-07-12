@@ -5,8 +5,7 @@ class Facility
               :address,
               :phone,
               :services,
-              :registered_vehicles,
-              :collected_fees
+              :registered_vehicles
 
   def initialize(fac_info)
     @name = fac_info[:name]
@@ -33,9 +32,5 @@ class Facility
         vehicle.plate_type = :regular
       end
     end
-  end
-
-  def collect_fees
-
   end
 end

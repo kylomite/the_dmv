@@ -90,7 +90,7 @@ RSpec.describe Facility do
 
       @facility.register_vehicle(@camaro)
 
-      expect(@facility.collected_fees).to eq 100
+      expect(@facility.collected_fees).to eq 25
 
     end
 
@@ -100,10 +100,20 @@ RSpec.describe Facility do
 
       @facility.register_vehicle(@bolt)
 
-      expect(@facility.collected_fees).to eq 100
+      expect(@facility.collected_fees).to eq 200
 
     end
 
+    it 'can keep running total of collected fees' do
+      
+      @facility.add_service('Vehicle Registration')
+
+      @facility.register_vehicle(@cruz)
+      @facility.register_vehicle(@bolt)
+      @facility.register_vehicle(@camaro)
+
+      expect(@facility.collected_fees).to eq 325
+    end
   end
 
   describe'#new_drivers_license' do
