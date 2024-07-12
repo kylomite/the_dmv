@@ -1,3 +1,5 @@
+require './lib/vehicle.rb'
+
 class Facility
   attr_reader :name, 
               :address,
@@ -22,6 +24,13 @@ class Facility
   def register_vehicle(vehicle)
     if @services.include?('Vehicle Registration')
       @registered_vehicles << vehicle
+      if vehicle.antique? == true
+        vehicle.plate_type = :antique
+      elsif vehicle.electric_vehicle? == true
+        vehicle.plate_type = :ev
+      else 
+        vehicle.plate_type = :regular
+      end
     end
   end
 
