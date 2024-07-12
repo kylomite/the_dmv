@@ -51,12 +51,20 @@ RSpec.describe Facility do
 
     it 'will assign current date as vehicles registration date' do
 
+      @facility.add_service('Vehicle Registration')
+      require'pry';binding.pry
+      expect(@cruz.registration_date).to eq nil
+
+      @facility.register_vehicle(@cruz)
+
+      expect(@cruz.registration_date).to be_an_instance_of Date
+
     end
 
     it 'will assign a plate type based on regular/EV/antique status ' do 
       
       @facility.add_service('Vehicle Registration')
-      #require'pry';binding.pry
+
       @facility.register_vehicle(@cruz)
       @facility.register_vehicle(@bolt)
       @facility.register_vehicle(@camaro)
