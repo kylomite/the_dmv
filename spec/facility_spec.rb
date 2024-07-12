@@ -39,18 +39,21 @@ RSpec.describe Facility do
 
   describe'#register_vehicle' do
     it 'will add specified vehicle to @register_vehicles array' do 
-      expect(facility_1.registered_vehicles).not_to include @cruz
+      
+      @facility.add_service('Vehicle Registration')
+      
+      expect(@facility.registered_vehicles).not_to include @cruz
 
-      facility_1.register_vehicle(@cruz)
+      @facility.register_vehicle(@cruz)
 
-      expect(facility_1.registered_vehicles).to include @cruz
+      expect(@facility.registered_vehicles).to include @cruz
     end
 
     it 'will assign a plate type based on regular/EV/antique status ' do 
-      facility_1.register_vehicle(@cruz)
-      facility_1.register_vehicle(@bolt)
-      facility_1.register_vehicle(@camero)
-      
+      @facility.register_vehicle(@cruz)
+      @facility.register_vehicle(@bolt)
+      @facility.register_vehicle(@camero)
+      require'pry';binding.pry
       expect(@cruz.plate_type).to be :regular
       expect(@bolt.plate_type).to be :ev
       expect(@camero.plate_type).to be :antique
