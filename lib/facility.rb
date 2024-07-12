@@ -24,6 +24,7 @@ class Facility
   def register_vehicle(vehicle)
     if @services.include?('Vehicle Registration')
       @registered_vehicles << vehicle
+      vehicle.registration_date = Date.today
       if vehicle.antique? == true
         vehicle.plate_type = :antique
       elsif vehicle.electric_vehicle? == true
