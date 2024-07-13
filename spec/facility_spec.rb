@@ -139,7 +139,7 @@ RSpec.describe Facility do
     end
   end
 
-  describe'#renew_license' do
+  describe'#renew_drivers_license' do
     before(:each) do
       @facility.add_service('Written Test')
       @facility.add_service('Road Test')
@@ -152,29 +152,29 @@ RSpec.describe Facility do
   
     it 'will be unavailable at facilities that do not offer the service' do
       facility_2 = Facility.new({name: 'DMV Northeast Branch', address: '4685 Peoria Street Suite 101 Denver CO 80239', phone: '(720) 865-4600'})
-      expect{facility_2.renew_license(@registrant)}.not_to change{@registrant.license_data}
+      expect{facility_2.renew_drivers_license(@registrant)}.not_to change{@registrant.license_data}
       
     end
 
     it 'will be unavailable to registrants who have not earned a permit' do
-      expect{@facility.renew_license(@registrant_4)}.not_to change{@registrant_4.license_data}
+      expect{@facility.renew_drivers_license(@registrant_4)}.not_to change{@registrant_4.license_data}
     end
     
     it 'will be unavailable to registrants who have not passed written test' do
-      expect{@facility.renew_license(@registrant_3)}.not_to change{@registrant_3.license_data}
+      expect{@facility.renew_drivers_license(@registrant_3)}.not_to change{@registrant_3.license_data}
     end
     
     it 'will be unavailable to registrants who have not passed road test' do
       @facility.administer_written_test(@registrant_2)
 
-      expect{@facility.renew_license(@registrant_2)}.not_to change{@registrant_2.license_data}
+      expect{@facility.renew_drivers_license(@registrant_2)}.not_to change{@registrant_2.license_data}
     end
 
     it 'will update registrants license_data attribute to include a renewed license' do
       @facility.administer_written_test(@registrant)
       @facility.administer_road_test(@registrant)
 
-      expect{@facility.renew_license(@registrant)}.to change{@registrant.license_data}.from({:written=>true, :license=>true, :renewed=>false}).to({:written=>true, :license=>true, :renewed=>true})
+      expect{@facility.renew_drivers_license(@registrant)}.to change{@registrant.license_data}.from({:written=>true, :license=>true, :renewed=>false}).to({:written=>true, :license=>true, :renewed=>true})
     end
   end
 end
