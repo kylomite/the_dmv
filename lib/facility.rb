@@ -22,6 +22,11 @@ class Facility
   end
 
   def register_vehicle(vehicle)
+    #BREAK INTO 
+    #ADD_TO_REGISTERED_VEHICLE_METHOD
+    #UPDATE_VEHICLE_REGISTRATION_METHOD
+    #COLLECT_FEES_METHOD
+    #SET_PLATE_TYPE_METHOD
     if @services.include?('Vehicle Registration')
       @registered_vehicles << vehicle
       vehicle.registration_date = Date.today
@@ -35,6 +40,24 @@ class Facility
         @collected_fees += 100
         vehicle.plate_type = :regular
       end
+    end
+  end
+
+  def administer_written_test(registrant)
+
+    if @services.include?("Written Test") && registrant.permit == true
+      registrant.license_data[:written] = true
+    else
+      false
+    end
+
+  end
+  
+  def administer_road_test(registrant)
+    if @services.include?("Written Test") && registrant.permit == true && registrant.license_data[:written] == true
+      registrant.license_data[:license] = true
+    else
+      false
     end
   end
 end
