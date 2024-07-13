@@ -13,7 +13,7 @@ class Registrant
     end
 
     def earn_permit
-        if @permit == false
+        if @permit == false && @age > 15
             @permit = true
         else 
             "Permit is already earned"
