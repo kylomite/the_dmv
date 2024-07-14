@@ -14,7 +14,7 @@ RSpec.describe VehicleFactory do
     end
 
         describe '#initialize' do
-            it 'will create a vehicle_details object with all nil values(excludes engine:)' do
+            it 'will create a vehicle_details object with default values' do
                 expect(@factory.vehicle_details).to eq({:vin => nil, :year => nil, :make => nil, :model => nil, :engine => :ev, :plate_type => nil, :registration_date => nil})
             end
 
