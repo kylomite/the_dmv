@@ -20,7 +20,10 @@ class VehicleFactory
     end
 
     def create_vehicles(vehicle_list)
-        vehicle_list.map {|vehicle|}
+        vehicle_list.each {|vehicle|
+            transform_vehicle_data(vehicle)
+        }
+        @vehicles
     end
 
 end

@@ -23,10 +23,7 @@ RSpec.describe VehicleFactory do
             end
         end
 
-
         describe '#transform_vehicle_data' do
-            #describe'pry';binding.pry
-
             it 'will create a new Vehicle object' do
                 @factory.transform_vehicle_data(@test_car)
 
@@ -44,14 +41,14 @@ RSpec.describe VehicleFactory do
                 expect(@factory.vehicles[0].plate_type).to eq nil
                 expect(@factory.vehicles[0].registration_date).to eq nil
             end
-        end
 
-        describe '#create_vehicles' do
-
-            it 'will push vehicles to the vehicles array using the #transform_vehicle_data helper method' do 
-
+            it 'will push the vehicle instance into the vehicle array' do
+                expect{@factory.transform_vehicle_data(@test_car)}.to change{@factory.vehicles.length}.from(0).to(1)
             end
         end
-    
-
+        describe '#create_vehicles' do
+            it 'will push vehicles to the vehicles array using the #transform_vehicle_data helper method' do 
+                expect{@factory.create_vehicles(@wa_ev_registrations)}.to change{@factory.vehicles.length}.from(0).to(1000)
+            end
+        end
 end
