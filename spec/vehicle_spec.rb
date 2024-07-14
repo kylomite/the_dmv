@@ -3,7 +3,7 @@ require './lib/vehicle'
 
 RSpec.configure do |config|
   config.formatter = :documentation
-  end
+end
 
 RSpec.describe Vehicle do
   before(:each) do
