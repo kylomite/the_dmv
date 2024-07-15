@@ -52,7 +52,6 @@ RSpec.describe Facility_Factory do
 
     describe '#create_co_facilities' do
         it 'will push facilities to the appropriate state array using the #transform_facility_data helper method' do
-        #require'pry';binding.pry
             expect{@dmv.create_co_facilities(@co_facilities)}.to change{@dmv.facilities[:co].length}.from(0).to(5)
         end
     end
@@ -80,7 +79,7 @@ RSpec.describe Facility_Factory do
         end
     end
 
-    describe 'create_ny_facilities' do
+    describe '#create_ny_facilities' do
         it 'will push facilities to the appropriate state array using the #transform_facility_data helper method' do
             expect{@dmv.create_ny_facilities(@ny_facilities)}.to change{@dmv.facilities[:ny].length}.from(0).to(170)
         end
@@ -109,9 +108,16 @@ RSpec.describe Facility_Factory do
         end
     end
 
-    describe 'create_mo_facilities' do
+    describe '#create_mo_facilities' do
         it 'will push facilities to the appropriate state array using the #transform_facility_data helper method' do
-        require 'pry';binding.pry
+            expect{@dmv.create_mo_facilities(@mo_facilities)}.to change{@dmv.facilities[:mo].length}.from(0).to(178)
+        end
+    end
+
+    describe '#create facilities' do
+        it 'will push facilities to the appropriate state array using the #transform_facility_data helper method' do
+            expect{@dmv.create_co_facilities(@co_facilities)}.to change{@dmv.facilities[:co].length}.from(0).to(5)
+            expect{@dmv.create_ny_facilities(@ny_facilities)}.to change{@dmv.facilities[:ny].length}.from(0).to(170)
             expect{@dmv.create_mo_facilities(@mo_facilities)}.to change{@dmv.facilities[:mo].length}.from(0).to(178)
         end
     end
