@@ -1,8 +1,9 @@
 class Registrant
     attr_reader :name,
                 :age,
-                :permit,
-                :license_data
+                :permit
+                
+    attr_accessor :license_data
 
     def initialize(name, age, permit = false)
         @name = name
@@ -12,10 +13,8 @@ class Registrant
     end
 
     def earn_permit
-        if @permit == false
+        if @permit == false && @age > 15
             @permit = true
-        else 
-            "Permit is already earned"
         end
     end
 

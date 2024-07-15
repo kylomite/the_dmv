@@ -11,6 +11,7 @@ RSpec.describe 'registrant' do
     before(:each) do
         @registrant_1 = Registrant.new('Bruce', 18, true )
         @registrant_2 = Registrant.new('Penny', 15 )
+        @registrant_3 = Registrant.new('Kaizen', 17 )
     end
 
     describe '#initialize' do
@@ -41,14 +42,15 @@ RSpec.describe 'registrant' do
 
     describe '#earn_permit' do
         it 'should update the permit atttribute' do
-            expect(@registrant_2.permit).to be false
-            @registrant_2.earn_permit
-
-            expect(@registrant_2.permit).to be true
+            expect{@registrant_3.earn_permit}.to change{@registrant_3.permit}.from(false).to(true)
         end
 
         it 'should be inaccesable to someone who has already earned their permit' do
-            expect(@registrant_1.earn_permit).to eq "Permit is already earned"
+            expect{@registrant_1.earn_permit}.not_to change{@registrant_1.permit}
+        end
+
+        it 'should be inaccesable to someone who is younger than 16' do
+            expect{@registrant_2.earn_permit}.not_to change{@registrant_2.permit}
         end
     end
 
