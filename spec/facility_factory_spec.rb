@@ -26,6 +26,14 @@ RSpec.describe Facility_Factory do
             expect(@dmv.facilities).to eq({:co => [], :ny => [], :mo => []})
         end
     end
+
+    describe '#create facilities' do
+        it 'will push facilities to the appropriate state array using the #transform_facility_data helper method' do
+            expect{@dmv.create_facilities(@co_facilities)}.to change{@dmv.facilities[:co].length}.from(0).to(5)
+            expect{@dmv.create_facilities(@ny_facilities)}.to change{@dmv.facilities[:ny].length}.from(0).to(170)
+            expect{@dmv.create_facilities(@mo_facilities)}.to change{@dmv.facilities[:mo].length}.from(0).to(178)
+        end
+    end
 #COLORADO
     describe '#transform_co_facility_data' do
         it 'will create a new Facility object' do
@@ -47,12 +55,6 @@ RSpec.describe Facility_Factory do
 
         it 'will push the facility instance into the facilitys state array' do
             expect{@dmv.transform_co_facility_data(@co_test_facility)}.to change{@dmv.facilities[:co].length}.from(0).to(1)
-        end
-    end
-
-    describe '#create_co_facilities' do
-        it 'will push facilities to the appropriate state array using the #transform_facility_data helper method' do
-            expect{@dmv.create_co_facilities(@co_facilities)}.to change{@dmv.facilities[:co].length}.from(0).to(5)
         end
     end
 # #NEW YORK
@@ -78,12 +80,6 @@ RSpec.describe Facility_Factory do
             expect{@dmv.transform_ny_facility_data(@ny_test_facility)}.to change{@dmv.facilities[:ny].length}.from(0).to(1)
         end
     end
-
-    describe '#create_ny_facilities' do
-        it 'will push facilities to the appropriate state array using the #transform_facility_data helper method' do
-            expect{@dmv.create_ny_facilities(@ny_facilities)}.to change{@dmv.facilities[:ny].length}.from(0).to(170)
-        end
-    end
 # #MISSOURI
     describe '#transform_mo_facility_data' do
         it 'will create a new Facility object' do
@@ -105,20 +101,6 @@ RSpec.describe Facility_Factory do
 
         it 'will push the facility instance into the facilitys state array' do
             expect{@dmv.transform_mo_facility_data(@mo_test_facility)}.to change{@dmv.facilities[:mo].length}.from(0).to(1)
-        end
-    end
-
-    describe '#create_mo_facilities' do
-        it 'will push facilities to the appropriate state array using the #transform_facility_data helper method' do
-            expect{@dmv.create_mo_facilities(@mo_facilities)}.to change{@dmv.facilities[:mo].length}.from(0).to(178)
-        end
-    end
-
-    describe '#create facilities' do
-        it 'will push facilities to the appropriate state array using the #transform_facility_data helper method' do
-            expect{@dmv.create_co_facilities(@co_facilities)}.to change{@dmv.facilities[:co].length}.from(0).to(5)
-            expect{@dmv.create_ny_facilities(@ny_facilities)}.to change{@dmv.facilities[:ny].length}.from(0).to(170)
-            expect{@dmv.create_mo_facilities(@mo_facilities)}.to change{@dmv.facilities[:mo].length}.from(0).to(178)
         end
     end
 end

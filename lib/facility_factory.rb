@@ -14,49 +14,7 @@ class Facility_Factory
             :mo => []
         }
     end
-
-    def transform_co_facility_data(facility)
-        @facility_details [:name] = facility[:dmv_office]
-        @facility_details [:address] = facility[:address_li]
-        @facility_details [:phone] = facility[:phone]
-        @facilities[:co].push(Facility.new(@facility_details))    
-    end
-#COLORADO
-    def create_co_facilities(facilities_list)
-        facilities_list.each {|facility|
-        transform_co_facility_data(facility)
-        }
-        @facilities[:co]
-    end
-#NEW YORK
-    def transform_ny_facility_data(facility)
-        @facility_details [:name] = facility[:office_name]
-        @facility_details [:address] = facility[:street_address_line_1]
-        @facility_details [:phone] = facility[:public_phone_number]
-        @facilities[:ny].push(Facility.new(@facility_details))    
-    end
-
-    def create_ny_facilities(facilities_list)
-        facilities_list.each {|facility|
-        transform_ny_facility_data(facility)
-        }
-        @facilities[:ny]
-    end
-#MISSOURI
-    def transform_mo_facility_data(facility)
-        @facility_details [:name] = facility[:name]
-        @facility_details [:address] = facility[:address1]
-        @facility_details [:phone] = facility[:phone]
-        @facilities[:mo].push(Facility.new(@facility_details))    
-    end
-
-    def create_mo_facilities(facilities_list)
-        facilities_list.each {|facility|
-        transform_mo_facility_data(facility)
-        }
-        @facilities[:mo]
-    end
-
+    
     def create_facilities(facilities_list)
         if facilities_list[0][:state] == "CO"
             facilities_list.each {|facility|
@@ -71,5 +29,26 @@ class Facility_Factory
             transform_mo_facility_data(facility)
             }
         end
+    end
+#COLORADO
+    def transform_co_facility_data(facility)
+        @facility_details [:name] = facility[:dmv_office]
+        @facility_details [:address] = facility[:address_li]
+        @facility_details [:phone] = facility[:phone]
+        @facilities[:co].push(Facility.new(@facility_details))    
+    end
+#NEW YORK
+    def transform_ny_facility_data(facility)
+        @facility_details [:name] = facility[:office_name]
+        @facility_details [:address] = facility[:street_address_line_1]
+        @facility_details [:phone] = facility[:public_phone_number]
+        @facilities[:ny].push(Facility.new(@facility_details))    
+    end
+#MISSOURI
+    def transform_mo_facility_data(facility)
+        @facility_details [:name] = facility[:name]
+        @facility_details [:address] = facility[:address1]
+        @facility_details [:phone] = facility[:phone]
+        @facilities[:mo].push(Facility.new(@facility_details))    
     end
 end
