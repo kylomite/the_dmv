@@ -12,6 +12,7 @@ RSpec.describe 'registrant' do
         @registrant_1 = Registrant.new('Bruce', 18, true )
         @registrant_2 = Registrant.new('Penny', 15 )
         @registrant_3 = Registrant.new('Kaizen', 17 )
+        edge_case = Registrant.new(true, "'; DROP TABLE users; --")
     end
 
     describe '#initialize' do
@@ -21,6 +22,18 @@ RSpec.describe 'registrant' do
 
         it 'should have a name' do
             expect(@registrant_1.name).to eq 'Bruce'
+        end
+
+        it 'should require the name argument to be a string' do
+            edge_case = Registrant.new(true, 15)
+            
+            expect(edge_case).not_to be_an_instance_of Registrant
+        end
+
+        it 'should require the age argument to be an integer' do
+            edge_case = Registrant.new("Malicious Entrant", "'; DROP TABLE users; --")
+
+            expect(edge_case).not_to be_an_instance_of Registrant
         end
 
         it 'should have an age' do
