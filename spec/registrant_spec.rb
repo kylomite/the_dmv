@@ -5,7 +5,6 @@ require './lib/registrant'
 RSpec.configure do |config|
     config.formatter = :documentation
     end
-
 RSpec.describe 'registrant' do
 
     before(:each) do
